@@ -11,6 +11,12 @@ function login() {
         async:true,
         success:function (data) {
             console.info(data);
+            var json = JSON.parse(data);
+            if(json.success=="ok"){
+                alert("登录成功");
+            }else{
+                alert("登录失败");
+            }
         }
     });
 }
