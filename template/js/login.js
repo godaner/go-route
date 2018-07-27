@@ -14,7 +14,7 @@ function login() {
             var json = JSON.parse(data);
             alert(json.msg);
             if(json.code==1){
-                location.href="http://127.0.0.1:9090/html/index.html"
+                location.href="http://127.0.0.1:9090/html/home.html"
             }
         }
     });

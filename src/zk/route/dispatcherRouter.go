@@ -19,13 +19,10 @@ func GetDispatcherRouter(router Router,staticRouter StaticRouter)DispatcherRoute
 }
 
 func (dispatcherHandler DispatcherRouter)ServeHTTP(w http.ResponseWriter,r *http.Request){
-	//parse form
-	r.ParseForm()
-	//log
-	log.Println("====> path is : ",r.URL.Path," ====>")
-	log.Println(r)
-	log.Println(r.Form)
 
+	prepareRequest(r)
+
+	//start route
 	finded := false
 	for _,route:= range dispatcherHandler.Router.Routes {
 		if matchRoute(route,r) {//match request path and request method:post get delete put etc.
@@ -45,6 +42,15 @@ func (dispatcherHandler DispatcherRouter)ServeHTTP(w http.ResponseWriter,r *http
 		}
 	}
 }
+func prepareRequest(r *http.Request) {
+	//parse form
+	r.ParseForm()
+	//log
+	log.Println("====> path is : ",r.URL.Path," ====>")
+	log.Println(r)
+	log.Println(r.Form)
+}
+
 func matchStaticRoute(staticRoute StaticRoute, request *http.Request) bool {
 	//request /html/login.html
 	//staticRoute /html/ template
