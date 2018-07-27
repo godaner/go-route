@@ -8,10 +8,9 @@ import (
 func ListAndRegistRoutes() route.Router{
 	return route.RegistRoutes(
 		route.MakePostRoute("/login",userHandler.LoginRouter),
-		//route.MakeRoute("/logout",userHandler.Logout),
-		//route.MakeRoute("/onlineUser",userHandler.GetOnlineUser),
-		//route.MakeRoute("/regist",userHandler.RegistHandler))
-	)
+		route.MakePostRoute("/logout",userHandler.LogoutRouter),
+		route.MakeGetRoute("/onlineUser",userHandler.GetOnlineUserRouter),
+		route.MakePostRoute("/regist",userHandler.RegistRouter))
 }
 
 func ListAndRegistStaticRoutes() route.StaticRouter{
