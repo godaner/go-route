@@ -1,9 +1,10 @@
 package server
 
 import (
-	"net/http"
-	"log"
 	"zk/httpsession"
+	"zk/route"
+	"log"
+	"net/http"
 )
 
 const(
@@ -12,17 +13,17 @@ const(
 
 func StartServer(){
 
-	ListAndRegistRoutes()
+	router:=ListAndRegistRoutes()
 
-	ListAndRegistStaticRoutes()
+	staticRouter:=ListAndRegistStaticRoutes()
 
 	httpsession.InitSession()
 
-	runServer()
+	runServer(router,staticRouter)
 }
+func runServer(router route.Router, staticRouter route.StaticRouter) {
 
-func runServer() {
-	err := http.ListenAndServe(ADDR,nil)
+	err := http.ListenAndServe(ADDR,route.GetDispatcherRouter(router,staticRouter))
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}

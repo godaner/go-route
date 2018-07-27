@@ -1,19 +1,22 @@
 package server
 
 import (
-	"zk/handler"
+	"zk/router"
 	"zk/route"
 )
 
-func ListAndRegistRoutes(){
-	route.RegistRoutes(route.MakeRoute("/login",userHandler.LoginHandler))
-	route.RegistRoutes(route.MakeRoute("/logout",userHandler.Logout))
-	route.RegistRoutes(route.MakeRoute("/onlineUser",userHandler.GetOnlineUser))
-	route.RegistRoutes(route.MakeRoute("/regist",userHandler.RegistHandler))
+func ListAndRegistRoutes() route.Router{
+	return route.RegistRoutes(
+		route.MakePostRoute("/login",userHandler.LoginRouter),
+		//route.MakeRoute("/logout",userHandler.Logout),
+		//route.MakeRoute("/onlineUser",userHandler.GetOnlineUser),
+		//route.MakeRoute("/regist",userHandler.RegistHandler))
+	)
 }
 
-func ListAndRegistStaticRoutes(){
-	route.RegistStaticRoutes(route.MakeStaticRoute("/html/","template"))
-	route.RegistStaticRoutes(route.MakeStaticRoute("/css/","template"))
-	route.RegistStaticRoutes(route.MakeStaticRoute("/js/","template"))
+func ListAndRegistStaticRoutes() route.StaticRouter{
+	return route.RegistStaticRoutes(
+		route.MakeStaticRoute("/html/","template"),
+		route.MakeStaticRoute("/css/","template"),
+		route.MakeStaticRoute("/js/","template"))
 }
