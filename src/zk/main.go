@@ -42,8 +42,9 @@ func initHttpSessions(){
 func init(){
 	initHttpSessions()
 }
+
+
 func main() {
 	StartServer()
 }
-//A := "aa"
-//var A = "aa"
+
