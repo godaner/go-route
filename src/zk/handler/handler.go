@@ -1,4 +1,4 @@
-package userHandler
+package handler
 
 import (
 	"zk/util"
@@ -6,10 +6,10 @@ import (
 	"zk/model"
 	"gopkg.in/mgo.v2/bson"
 	"zk/route"
-	"zk/httpsession"
+	"zk/httpSessions"
 )
 
-func LoginRouter(response route.RouteResponse, request route.RouteRequest) {
+func LoginHandler(response route.RouteResponse, request route.RouteRequest) {
 
 	userMap:=request.Params
 
@@ -27,8 +27,13 @@ func LoginRouter(response route.RouteResponse, request route.RouteRequest) {
 			Msg:"登录失败，账户或者密码错误",
 		})
 	}else{
-		user:=query.Limit(1)
-		//httpsession.HttpSessions.SessionStart(w, r).Set("onlineUser",user)
+		var user model.User
+		query.Limit(1).One(&user)
+
+		session , err := httpSessions.HttpSessions.SessionStart(response.ResponseWriter, request.Request)
+		util.PrintErr(err)
+		defer session.SessionRelease(response.ResponseWriter)
+		session.Set("onlineUser",user)
 
 		response.WriteJsonStr(util.Response{
 			Code:1,
@@ -41,23 +46,36 @@ func LoginRouter(response route.RouteResponse, request route.RouteRequest) {
 
 }
 
-func GetOnlineUserRouter(response route.RouteResponse, request route.RouteRequest) {
-	onlineUser:=httpsession.HttpSessions.SessionStart(response.ResponseWriter,request.Request).Get("onlineUser")
-	response.WriteJsonStr(util.Response{
-		Code:1,
-		Msg:"获取在线用户成功",
-		Data:map[string]interface{}{"user":onlineUser},
-	})
+func GetOnlineUserHandler(response route.RouteResponse, request route.RouteRequest) {
+	session , err := httpSessions.HttpSessions.SessionStart(response.ResponseWriter, request.Request)
+	util.PrintErr(err)
+	defer session.SessionRelease(response.ResponseWriter)
+	onlineUser:=session.Get("onlineUser")
+
+	if onlineUser!=nil {
+		response.WriteJsonStr(util.Response{
+			Code:1,
+			Msg:"获取在线用户成功",
+			Data:map[string]interface{}{"onlineUser":onlineUser},
+		})
+	}else{
+		response.WriteJsonStr(util.Response{
+			Code:-1,
+			Msg:"离线",
+		})
+	}
+
+
 }
-func LogoutRouter(response route.RouteResponse, request route.RouteRequest) {
-	httpsession.HttpSessions.SessionDestroy(response.ResponseWriter,request.Request)
+func LogoutHandler(response route.RouteResponse, request route.RouteRequest) {
+	httpSessions.HttpSessions.SessionDestroy(response.ResponseWriter,request.Request)
 	response.WriteJsonStr(util.Response{
 		Code:1,
 		Msg:"注销成功",
 	})
 }
 
-func RegistRouter(response route.RouteResponse, request route.RouteRequest) {
+func RegistHandler(response route.RouteResponse, request route.RouteRequest) {
 
 	userMap := request.Params
 
