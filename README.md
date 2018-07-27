@@ -1,3 +1,2 @@
-# gowebdemo
-这是一个基于golang编写的web项目demo
-#### 请将GOPATH设置为本项目路径
+# goroute
+go语言编写的小框架route，通过注册route实现http请求和处理器映射
