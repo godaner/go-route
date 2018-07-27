@@ -1,11 +1,11 @@
 $(function(){
 
 })
-function login() {
-    var form_data = $("#loginForm").serialize();
+function regist() {
+    var form_data = $("#registForm").serialize();
     console.info(form_data);
     $.ajax({
-        url:"http://127.0.0.1:9090/login",
+        url:"http://127.0.0.1:9090/regist",
         data:form_data,
         method:"post",
         async:true,
@@ -13,9 +13,6 @@ function login() {
             console.info(data);
             var json = JSON.parse(data);
             alert(json.msg);
-            if(json.code==1){
-                location.href="http://127.0.0.1:9090/html/index.html"
-            }
         }
     });
 }
