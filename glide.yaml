@@ -1,0 +1,10 @@
+package: go-route
+import:
+- package: github.com/astaxie/beego
+  version: v1.10.0
+  subpackages:
+  - session
+- package: gopkg.in/mgo.v2
+  subpackages:
+  - bson
+- package: route
