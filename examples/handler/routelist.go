@@ -12,9 +12,3 @@ func Routes() route.Router{
 		route.MakePostRoute("/regist",RegistHandler))
 }
 
-func StaticRoutes() route.StaticRouter{
-	return route.RegistStaticRoutes(
-		route.MakeStaticRoute("/html/","examples/template"),
-		route.MakeStaticRoute("/css/","examples/template"),
-		route.MakeStaticRoute("/js/","examples/template"))
-}

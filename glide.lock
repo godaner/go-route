@@ -1,0 +1,14 @@
+hash: 241a779101c252d79e308541a167f76a2e29301ed9241ebcb5efe29853b0c1c6
+updated: 2018-08-01T09:53:30.3665456+08:00
+imports:
+- name: github.com/astaxie/beego
+  version: 053a075344c118a5cc41981b29ef612bb53d20ca
+  subpackages:
+  - session
+  - utils
+- name: gopkg.in/mgo.v2
+  version: 9856a29383ce1c59f308dd1cf0363a79b5bef6b5
+  subpackages:
+  - bson
+  - internal/json
+testImports: []

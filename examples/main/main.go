@@ -1,33 +1,31 @@
 package main
 
 import (
-	"route"
-	"examples/handler"
+	"go-route/route"
+	"go-route/examples/handler"
 	"net/http"
 	"log"
-	"examples/httpSessions"
+	"go-route/examples/httpSessions"
+	"github.com/astaxie/beego/session"
 )
 
 
 const(
-	ADDR=":9090"
+	ADDR=":80"
 )
 
 
 func StartServer(){
 
-	//static source routes
-	staticRouter := handler.StaticRoutes()
-
-	//dynamic routes
+	//routes
 	router := handler.Routes()
 
 	//run server
-	runServer(router,staticRouter)
+	runServer(router)
 }
-func runServer(router route.Router, staticRouter route.StaticRouter) {
+func runServer(router route.Router) {
 
-	err := http.ListenAndServe(ADDR,route.GetDispatcherRouter(router,staticRouter))
+	err := http.ListenAndServe(ADDR,route.GetDispatcherRouter(router))
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}
