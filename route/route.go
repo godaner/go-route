@@ -16,7 +16,7 @@ const (
 	GET="GET"
 	PUT="PUT"
 	DELETE="DELETE"
-	ANY="any"
+	ANY="ANY"
 )
 
 
