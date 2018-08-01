@@ -5,6 +5,7 @@ import (
 	"log"
 )
 
+
 type DispatcherRouter struct {
 	Router Router
 
@@ -23,9 +24,12 @@ func (dispatcherHandler DispatcherRouter)ServeHTTP(w http.ResponseWriter,r *http
 	for _,route:= range dispatcherHandler.Router.Routes {
 		if matchRoute(route,r) {//match request path and request method:post get delete put etc.
 			route.Router(makeRouteResponse(w),makeRouteRequest(r))
-			break
+			return 
 		}
 	}
+
+	err := "Method : "+r.Method + "#" + r.URL.Path + " is not exits !"
+	w.Write([]byte(err))
 
 }
 func prepareRequest(r *http.Request) {
