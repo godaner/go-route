@@ -42,7 +42,7 @@ func prepareRequest(r *http.Request) {
 }
 
 func matchRoute( route Route,r *http.Request) bool{
-	return r.URL.Path==route.Path && r.Method == route.Method
+	return r.URL.Path==route.Path && (route.Method != ANY && r.Method == route.Method)
 }
 func makeRouteRequest(request *http.Request) RouteRequest {
 

@@ -16,6 +16,7 @@ const (
 	GET="GET"
 	PUT="PUT"
 	DELETE="DELETE"
+	ANY="any"
 )
 
 
@@ -43,6 +44,14 @@ func MakeDeleteRoute(path string, router func (response RouteResponse, request R
 func MakePutRoute(path string, router func (response RouteResponse, request RouteRequest)) Route{
 	return Route{
 		Method:PUT,
+		Path:path,
+		Router:router,
+	}
+}
+
+func MakeAnyRoute(path string, router func (response RouteResponse, request RouteRequest)) Route{
+	return Route{
+		Method:ANY,
 		Path:path,
 		Router:router,
 	}
