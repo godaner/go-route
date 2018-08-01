@@ -3,7 +3,9 @@ ignore:
 - examples/handler
 - examples/httpSessions
 - route
+- go-util/httputil
 import:
+- package: github.com/godaner/go-util
 - package: github.com/astaxie/beego
   version: v1.10.1
   subpackages:
