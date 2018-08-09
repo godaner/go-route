@@ -10,47 +10,23 @@
   revision = "ef1e4c783f8f0478bd8bff0edb3dd0bade552599"
 
 [[projects]]
-  digest = "1:2bd5a34827cfd262150e002954e51a387d6d5122aafb4bed2fc31ad7b1c25dc8"
-  name = "github.com/astaxie/beego"
-  packages = [
-    "session",
-    "utils",
-  ]
-  pruneopts = "UT"
-  revision = "053a075344c118a5cc41981b29ef612bb53d20ca"
-  version = "v1.10.1"
-
-[[projects]]
   branch = "master"
-  digest = "1:957bf80784bf3c1a64f48e9c662b5fcf0e460e2a274b9a3bd15e161763b7998c"
+  digest = "1:ecf1a8562fdd12501d3f14fb5f94e6cb6095b90d62b794611fa6a4489817313e"
   name = "github.com/godaner/go-util"
-  packages = ["httputil"]
-  pruneopts = "UT"
-  revision = "c033bd20b884d94e8011a8b6b88cd3fa4319d3fe"
-
-[[projects]]
-  branch = "v2"
-  digest = "1:988de7520a09024d5d94cd99bd545afbf194893994ec759b1cda0a0bbb6adb80"
-  name = "gopkg.in/mgo.v2"
   packages = [
-    ".",
-    "bson",
-    "internal/json",
-    "internal/sasl",
-    "internal/scram",
+    "fileutil",
+    "httputil",
   ]
   pruneopts = "UT"
-  revision = "9856a29383ce1c59f308dd1cf0363a79b5bef6b5"
+  revision = "750242f839ac442adb5a2f4e790ec85e3b21a03f"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
     "github.com/Unknwon/goconfig",
-    "github.com/astaxie/beego/session",
+    "github.com/godaner/go-util/fileutil",
     "github.com/godaner/go-util/httputil",
-    "gopkg.in/mgo.v2",
-    "gopkg.in/mgo.v2/bson",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1

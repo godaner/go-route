@@ -2,10 +2,12 @@ package route
 
 import (
 	"github.com/Unknwon/goconfig"
-	"os/exec"
-	"os"
-	"strings"
+	"path/filepath"
+	"github.com/godaner/go-util/fileutil"
+	"log"
+	"go-util/errorutil"
 )
+
 
 type Configuration struct {
 	Port string
@@ -17,32 +19,41 @@ const(
 var (
 	conf Configuration
 )
+func Default()Configuration{
+	return Configuration{
+		Port:"80",
+	}
+}
 
-func LoadConfiguration(){
-	path := getCurrentPath()
-	cfg, err := goconfig.LoadConfigFile(path+"/"+CONFIGURATION_FILE_NAME)
-	checkErr(err)
-
+func MakeConfig(cfg *goconfig.ConfigFile) Configuration{
 	port, err := cfg.GetValue(goconfig.DEFAULT_SECTION, "port")
-	checkErr(err)
+	errorutil.CheckErr(err)
 
-	conf=Configuration{
+	return Configuration{
 		Port:port,
 	}
 }
-
-
-
-func getCurrentPath() string {
-	s, err := exec.LookPath(os.Args[0])
-	checkErr(err)
-	i := strings.LastIndex(s, "\\")
-	path := string(s[0 : i+1])
-	return path
-}
-
-func checkErr(err error) {
-	if err != nil {
-		panic(err)
+func LoadConfiguration(){
+	workPath := fileutil.Getwd()
+	log.Println("LoadConfiguration workPath is : ",workPath)
+	appPath := fileutil.GetAppPath()
+	log.Println("LoadConfiguration appPath is : ",appPath)
+	configPath := filepath.Join(workPath, "conf", CONFIGURATION_FILE_NAME)
+	if !fileutil.FileExists(configPath) {
+		configPath = filepath.Join(appPath, "conf", CONFIGURATION_FILE_NAME)
+		if !fileutil.FileExists(configPath) {
+			conf = Default()
+			log.Println("LoadConfiguration conf is default , conf is : ",conf)
+			return
+		}
 	}
+
+	cfg, err := goconfig.LoadConfigFile(configPath)
+	errorutil.CheckErr(err)
+
+	conf=MakeConfig(cfg)
+	log.Println("LoadConfiguration conf is custom , conf is : ",conf)
+
 }
+
+
