@@ -6,7 +6,7 @@ import (
 )
 
 func Start(){
-	err := http.ListenAndServe(conf.Port,DispatcherRouter{})
+	err := http.ListenAndServe(conf.Addr,DispatcherRouter{})
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}
