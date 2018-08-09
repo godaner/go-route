@@ -5,14 +5,9 @@ import (
 	"log"
 )
 
-func Start(){
-	err := http.ListenAndServe(conf.Addr,DispatcherRouter{})
+func Start(addr string){
+	err := http.ListenAndServe(addr,DispatcherRouter{})
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}
-}
-
-
-func init(){
-	LoadConfiguration()
 }
