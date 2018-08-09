@@ -5,7 +5,6 @@ import (
 	"os/exec"
 	"os"
 	"strings"
-	"fmt"
 )
 
 type Configuration struct {
@@ -13,7 +12,7 @@ type Configuration struct {
 }
 
 const(
-	CONFIGURATION_PATH = "./conf/app.conf"
+	CONFIGURATION_FILE_NAME = "app.conf"
 )
 var (
 	conf Configuration
@@ -21,8 +20,7 @@ var (
 
 func LoadConfiguration(){
 	path := getCurrentPath()
-	fmt.Println(path)
-	cfg, err := goconfig.LoadConfigFile(CONFIGURATION_PATH)
+	cfg, err := goconfig.LoadConfigFile(path+"/"+CONFIGURATION_FILE_NAME)
 	checkErr(err)
 
 	port, err := cfg.GetValue(goconfig.DEFAULT_SECTION, "port")
