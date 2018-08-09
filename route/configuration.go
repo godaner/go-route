@@ -13,7 +13,7 @@ type Configuration struct {
 }
 
 const(
-	CONFIGURATION_PATH = "./app.conf"
+	CONFIGURATION_PATH = "./conf/app.conf"
 )
 var (
 	conf Configuration
