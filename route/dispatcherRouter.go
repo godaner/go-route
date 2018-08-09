@@ -7,21 +7,16 @@ import (
 
 
 type DispatcherRouter struct {
-	Router Router
 
 }
-func GetDispatcherRouter(router Router)DispatcherRouter{
-	return DispatcherRouter{
-		Router:router,
-	}
-}
+
 
 func (dispatcherHandler DispatcherRouter)ServeHTTP(w http.ResponseWriter,r *http.Request){
 
 	prepareRequest(r)
 
 	//start route
-	for _,route:= range dispatcherHandler.Router.Routes {
+	for _,route:= range Routes {
 		if matchRoute(route,r) {//match request path and request method:post get delete put etc.
 			route.Router(makeRouteResponse(w),makeRouteRequest(r))
 			return

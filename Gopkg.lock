@@ -2,6 +2,14 @@
 
 
 [[projects]]
+  branch = "master"
+  digest = "1:8fec0e92b08b12b9b0f72f3fbcfe5a621b34eb9346e953fb63590bc2871b6bd8"
+  name = "github.com/Unknwon/goconfig"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "ef1e4c783f8f0478bd8bff0edb3dd0bade552599"
+
+[[projects]]
   digest = "1:2bd5a34827cfd262150e002954e51a387d6d5122aafb4bed2fc31ad7b1c25dc8"
   name = "github.com/astaxie/beego"
   packages = [
@@ -18,7 +26,7 @@
   name = "github.com/godaner/go-util"
   packages = ["httputil"]
   pruneopts = "UT"
-  revision = "6ba20c5863712af7dedabcac1e05286e5c8bcf0f"
+  revision = "c033bd20b884d94e8011a8b6b88cd3fa4319d3fe"
 
 [[projects]]
   branch = "v2"
@@ -38,6 +46,7 @@
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
+    "github.com/Unknwon/goconfig",
     "github.com/astaxie/beego/session",
     "github.com/godaner/go-util/httputil",
     "gopkg.in/mgo.v2",

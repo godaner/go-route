@@ -1,16 +1,17 @@
 package route
 
 //Router
-
-type Router struct {
-	Routes []Route
-}
+//Regist routes first , then Start
 
 type Route struct {
 	Path string
 	Method string //POST.GET.DELETE,PUT etc.
 	Router func (w RouteResponse, r RouteRequest)
 }
+
+var (
+	Routes []Route
+)
 const (
 	POST="POST"
 	GET="GET"
@@ -57,6 +58,6 @@ func MakeAnyRoute(path string, router func (response RouteResponse, request Rout
 	}
 }
 
-func RegistRoutes(rs...Route) Router{
-	return Router{rs}
+func RegistRoutes(rs...Route) {
+	Routes = rs
 }
