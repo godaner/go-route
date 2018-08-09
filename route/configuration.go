@@ -10,7 +10,7 @@ import (
 
 
 type Configuration struct {
-	Port string
+	Addr string
 }
 
 const(
@@ -21,16 +21,16 @@ var (
 )
 func Default()Configuration{
 	return Configuration{
-		Port:"80",
+		Addr:":80",
 	}
 }
 
 func MakeConfig(cfg *goconfig.ConfigFile) Configuration{
-	port, err := cfg.GetValue(goconfig.DEFAULT_SECTION, "port")
+	addr, err := cfg.GetValue(goconfig.DEFAULT_SECTION, "addr")
 	errorutil.CheckErr(err)
 
 	return Configuration{
-		Port:port,
+		Addr:addr,
 	}
 }
 func LoadConfiguration(){
