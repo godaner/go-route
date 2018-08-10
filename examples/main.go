@@ -5,8 +5,6 @@ import (
 	"go-route/examples/httpSessions"
 	"go-route/route"
 	"github.com/astaxie/beego/session"
-	"log"
-	"go-util/fileutil"
 )
 const (
 	ADDR=":80"
@@ -22,8 +20,6 @@ func init(){
 }
 
 func main() {
-	log.Println(fileutil.GetAppPath())
-	log.Println(fileutil.Getwd())
 	//regist routes first
 	handler.RegistRoutes()
 	//then , start server

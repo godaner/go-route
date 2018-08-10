@@ -41,6 +41,7 @@
     "github.com/astaxie/beego/session",
     "github.com/godaner/go-util/httputil",
     "gopkg.in/mgo.v2",
+    "gopkg.in/mgo.v2/bson",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1
