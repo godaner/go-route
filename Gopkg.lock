@@ -14,11 +14,27 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:957bf80784bf3c1a64f48e9c662b5fcf0e460e2a274b9a3bd15e161763b7998c"
-  name = "github.com/godaner/go-util"
-  packages = ["httputil"]
+  digest = "1:ca1bfe03324601a4bd42482a331449c5f387ac014376b55515910ec3295ea15c"
+  name = "github.com/bwmarrin/snowflake"
+  packages = ["."]
   pruneopts = "UT"
-  revision = "750242f839ac442adb5a2f4e790ec85e3b21a03f"
+  revision = "68117e6bbede4dd72d70c7a58d73348ead068509"
+
+[[projects]]
+  branch = "master"
+  digest = "1:99f1bf07267daef7fe629cd4534e77ab41afa90f04714d15b74c0eb225db013e"
+  name = "github.com/godaner/go-util"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "aad915851b1f2e3dbcfe2bd34d213d86a6a741a7"
+
+[[projects]]
+  digest = "1:40e195917a951a8bf867cd05de2a46aaf1806c50cf92eebf4c16f78cd196f747"
+  name = "github.com/pkg/errors"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "645ef00459ed84a119197bfb8d8205042c6df63d"
+  version = "v0.8.0"
 
 [[projects]]
   branch = "v2"
@@ -39,7 +55,7 @@
   analyzer-version = 1
   input-imports = [
     "github.com/astaxie/beego/session",
-    "github.com/godaner/go-util/httputil",
+    "github.com/godaner/go-util",
     "gopkg.in/mgo.v2",
     "gopkg.in/mgo.v2/bson",
   ]

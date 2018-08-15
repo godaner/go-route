@@ -3,7 +3,7 @@ package route
 import (
 	"net/http"
 	"encoding/json"
-	"github.com/godaner/go-util/httputil"
+	"github.com/godaner/go-util"
 )
 
 type RouteResponse struct {
@@ -19,5 +19,5 @@ func (response RouteResponse) WriteString(str string){
 	response.ResponseWriter.Write([]byte(str))
 }
 func (response RouteResponse) WriteTemplate(template string){
-	httputil.WriteTemplate(response.ResponseWriter,template)
+	go_util.WriteTemplate(response.ResponseWriter,template)
 }
